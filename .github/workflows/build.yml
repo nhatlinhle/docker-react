@@ -1,0 +1,21 @@
+name: build
+on:
+  pull_request:
+    branches: [ "develop" ]
+    types: [ closed ]
+jobs:
+  merge_job:
+    name: build
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+    - name: ssh to server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSHKEY }}
+        script: |
+          cd ../../var/www/html/docker-react/
+          git pull
+          git build
