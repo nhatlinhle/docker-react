@@ -18,4 +18,4 @@ jobs:
         script: |
           cd ../../var/www/html/docker-react/
           git pull
-          git build
+          npm run build
