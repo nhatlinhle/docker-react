@@ -17,5 +17,5 @@ jobs:
         key: ${{ secrets.SSHKEY }}
         script: |
           cd ../../var/www/html/docker-react/
-          git pull
+          sudo git pull
           npm run build
